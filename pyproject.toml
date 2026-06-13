@@ -1,0 +1,61 @@
+[project]
+name = "knowledge-qa"
+version = "0.1.0"
+description = "Company Internal Knowledge Q&A Agent powered by LangChain"
+requires-python = ">=3.12"
+readme = "README.md"
+
+dependencies = [
+    # LangChain ecosystem
+    "langchain>=1.3.9",
+    "langchain-openai>=1.3.2",
+    "langchain-anthropic>=1.4.6",
+    "langchain-community>=0.4.2",
+    "langchain-text-splitters>=1.1.2",
+    # Vector database
+    "langchain-chroma>=1.1.0",
+    "chromadb>=1.5.9",
+    # Document parsing
+    "pymupdf>=1.25.0",
+    # Configuration
+    "python-dotenv>=1.1.0",
+    "pydantic-settings>=2.8.0",
+    # CLI
+    "typer>=0.15.0",
+    "rich>=13.9.0",
+    # Token counting
+    "tiktoken>=0.9.0",
+    # Local embeddings
+    "sentence-transformers>=3.0.0",
+    # ModelScope model download
+    "modelscope>=1.20.0",
+    "langchain-huggingface>=1.2.2",
+    # Web server
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    # Word document support
+    "docx2txt>=0.8",
+]
+
+[project.scripts]
+knowledge-qa = "src.cli.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.25.0",
+]
